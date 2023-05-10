@@ -29,7 +29,7 @@ mongoose
 });
 
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://nbuco7.csb.app"],
     methods: ["GET", "POST", "DELETE"],
     credentials: true
 }))
