@@ -67,6 +67,9 @@ module.exports.login = async (req,res,next) => {
         const user = await UserModel.login(email, password);
 
         const token = createToken(user._id);
+          
+          const tokenSize = Buffer.byteLength(token, 'utf-8');
+  console.log(`Token size: ${tokenSize} bytes`);
 
         res.cookie("jwt", token, {
             domain: 'https://nbuco7.csb.app',
