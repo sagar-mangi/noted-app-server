@@ -49,8 +49,7 @@ module.exports.register = async (req,res,next) => {
             withCredentials: true,
             httpOnly: false,
             maxAge: maxAge * 1000,
-            sameSite: "lax",
-//             sameSite: "none",
+            sameSite: "none",
             secure: true
         })
         res.status(201).json({user:user._id, created: true})
@@ -68,8 +67,7 @@ module.exports.login = async (req,res,next) => {
 
         const token = createToken(user._id);
 
-        res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000, sameSite: "lax", secure: true });
-//         res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000, sameSite: "none", secure: true });
+        res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000, sameSite: "none", secure: true });
         res.status(200).json({ user: user._id, status: true });
     } catch (err) {
         console.log(err);
