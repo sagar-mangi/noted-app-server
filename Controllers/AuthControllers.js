@@ -46,7 +46,7 @@ module.exports.register = async (req,res,next) => {
         const token = createToken(user._id);
 
         res.cookie("jwt",token,{
-            domain: 'https://nbuco7.csb.app',
+            domain: 'nbuco7.csb.app',
             withCredentials: true,
             httpOnly: false,
             maxAge: maxAge * 1000,
@@ -72,7 +72,7 @@ module.exports.login = async (req,res,next) => {
   console.log(`Token size: ${tokenSize} bytes`);
 
         res.cookie("jwt", token, {
-            domain: 'https://nbuco7.csb.app',
+            domain: 'nbuco7.csb.app',
             httpOnly: false, 
             maxAge: maxAge * 1000, 
             sameSite: "none", 
