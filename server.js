@@ -30,7 +30,7 @@ mongoose
 
 app.use(cors({
 //     origin: ["https://nbuco7.csb.app"],
-    origin: [*],
+    origin: ["*"],
     methods: ["GET", "POST", "DELETE"],
     credentials: true
 }))
