@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./Routes/AuthRoutes");
+const session = require('express-session');
 
 const app = express();
 
@@ -33,6 +34,16 @@ app.use(cors({
     methods: ["GET", "POST", "DELETE"],
     credentials: true
 }))
+
+app.use(session({
+  secret: '782ejd87hjda$##$hjasdvvysjh*(usd9(d', // Change this to a secret key of your choice
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: true, // Set this to false if you're not using HTTPS in development
+    sameSite: 'none', // Set this according to your requirements
+  },
+}));
 
 app.use(cookieParser());
 
