@@ -44,6 +44,9 @@ module.exports.register = async (req,res,next) => {
         const {firstName, lastName, email, password} = req.body;
         const user = await UserModel.create({firstName, lastName, email, password});
         const token = createToken(user._id);
+        
+        // Save the token in session storage
+        sessionStorage.setItem('jwt', token);
 
         res.cookie("jwt",token,{
             domain: 'nbuco7.csb.app',
@@ -68,8 +71,7 @@ module.exports.login = async (req,res,next) => {
 
         const token = createToken(user._id);
           
-          const tokenSize = Buffer.byteLength(token, 'utf-8');
-  console.log(`Token size: ${tokenSize} bytes`);
+        sessionStorage.setItem('jwt', token);
 
         res.cookie("jwt", token, {
             domain: 'nbuco7.csb.app',
