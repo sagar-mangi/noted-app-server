@@ -2,7 +2,6 @@ require("dotenv").config();
 const UserModel = require("../Models/UserModel");
 const jwt = require("jsonwebtoken");
 const maxAge = 3*24*60*60;
-var md5 = require('md5');
  
 
 
@@ -61,8 +60,7 @@ module.exports.login = async (req,res,next) => {
   const { email, password} = req.body;
       try {
         const user = await UserModel.login(email, password);
-       
-console.log(md5('message'));
+      
         const token = createToken(user._id);
           
         
