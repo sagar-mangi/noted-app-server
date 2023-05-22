@@ -1,20 +1,20 @@
-// require("dotenv").config();
-// const express = require("express");
-// const cookieParser = require("cookie-parser");
-// const mongoose = require("mongoose");
-// const cors = require("cors");
-// const authRoutes = require("./Routes/AuthRoutes");
-// const session = require('express-session');
+require("dotenv").config();
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const authRoutes = require("./Routes/AuthRoutes");
+const session = require('express-session');
 
-// const app = express();
+const app = express();
  
-// app.listen(8080, (err)=> {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("Server started on Port 8080");
-//     }
-// });
+app.listen(8080, (err)=> {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Server started on Port 8080");
+    }
+});
 
 mongoose.set("strictQuery", false);
 mongoose
