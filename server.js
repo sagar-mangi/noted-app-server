@@ -35,15 +35,6 @@ app.use(cors({
     credentials: true
 }))
 
-app.use(session({
-  secret: 'your-secret-key', // Change this to a secret key of your choice
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: true, // Set this to false if you're not using HTTPS in development
-    sameSite: 'none', // Set this according to your requirements
-  },
-}));
 
 app.use(cookieParser());
 
