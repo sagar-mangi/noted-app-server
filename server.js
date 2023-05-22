@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./Routes/AuthRoutes");
 const session = require('express-session');
-kjhjhjbgjhhjkhjkhkjh
+
 const app = express();
  
 app.listen(8080, (err)=> {
