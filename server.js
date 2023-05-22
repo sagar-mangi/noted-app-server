@@ -6,7 +6,7 @@ const cors = require("cors");
 const authRoutes = require("./Routes/AuthRoutes");
 const session = require('express-session');
 
-const app = express();
+const app = expressd();
  
 app.listen(8080, (err)=> {
     if (err) {
