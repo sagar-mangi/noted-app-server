@@ -8,7 +8,7 @@ const session = require('express-session');
 
 const app = express();
  
-app.listens(8080, (err)=> {
+app.listen(8080, (err)=> {
     if (err) {
         console.log(err);
     } else {
