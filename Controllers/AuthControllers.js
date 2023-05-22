@@ -45,8 +45,6 @@ module.exports.register = async (req,res,next) => {
         const user = await UserModel.create({firstName, lastName, email, password});
         const token = createToken(user._id);
         
-
-
         res.cookie("jwt",token,{
             domain: 'nbuco7.csb.app',
             withCredentials: true,
