@@ -61,10 +61,11 @@ module.exports.login = async (req,res,next) => {
   const { email, password} = req.body;
       try {
         const user = await UserModel.login(email, password);
+       
+console.log(md5('message'));
         const token = createToken(user._id);
           
         
-console.log(md5('message'));
         res.cookie("jwt", token, {
             domain: 'nbuco7.csb.app',
             httpOnly: false, 
