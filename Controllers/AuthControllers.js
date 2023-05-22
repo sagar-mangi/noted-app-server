@@ -2,6 +2,9 @@ require("dotenv").config();
 const UserModel = require("../Models/UserModel");
 const jwt = require("jsonwebtoken");
 const maxAge = 3*24*60*60;
+var md5 = require('md5');
+ 
+
 
 const createToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET, {
@@ -60,9 +63,8 @@ module.exports.login = async (req,res,next) => {
         const user = await UserModel.login(email, password);
         const token = createToken(user._id);
           
-          const tokenSize = Buffer.byteLength(token, 'utf-8');
-  console.log(`Token size: ${tokenSize} bytes`);
-
+        
+console.log(md5('message'));
         res.cookie("jwt", token, {
             domain: 'nbuco7.csb.app',
             httpOnly: false, 
