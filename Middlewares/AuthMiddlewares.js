@@ -35,7 +35,7 @@ module.exports.setNotes = (req, res, next) => {
             } else {
                 let foundUser = await User.findOne({_id: decodedToken.id})
                 foundUser.notes.push({title, content})
-//                 await foundUser.save();
+                await foundUser.save();
                 res.json({notes: foundUser.notes})
                 next();
             }
