@@ -47,7 +47,6 @@ module.exports.setNotes = async (req, res, next) => {
         
       // Populate the notes array with the actual note documents
       const populatedUser = await User.findOne({ _id: decodedToken.id }).populate('notes');
-      console.log(populatedUser.notes)
       res.json({ notes: populatedUser.notes });
     } catch (err) {
       res.json({ err });
