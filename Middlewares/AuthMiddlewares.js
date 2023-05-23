@@ -12,7 +12,8 @@ module.exports.checkUser = (req, res, next) => {
                 next();
             } else {
                 const user = await User.findById(decodedToken.id)
-                if (user) res.json({status: true, user: user.email, firstName: user.firstName, notes: user.notes})
+                const populatedUser = await User.findOne({ _id: decodedToken.id }).populate('notes');
+                if (user) res.json({status: true, user: user.email, firstName: user.firstName, notes: populatedUser.notes})
                 else res.json({status: false});
                 next();
             }
