@@ -2,22 +2,22 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email: {
-        type: String,
-        required: [true, "Email is required"],
-        unique: true
-    },
-    password: {
-        type: String,
-        required: [true, "Password is required"]
-    },
-    notes: [{
+  firstName: String,
+  lastName: String,
+  email: {
+    type: String,
+    required: [true, "Email is required"],
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: [true, "Password is required"],
+  },
+  notes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Note",
   }],
-})
+});
 
 userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
@@ -37,4 +37,4 @@ userSchema.statics.login = async function (email, password) {
   throw Error("incorrect email");
 };
 
-module.exports = mongoose.model("Users", userSchema);
+module.exports = mongoose.model("User", userSchema);
