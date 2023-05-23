@@ -66,7 +66,9 @@ module.exports.deleteNotes = (req, res, next) => {
                 const foundUser = await User.findOne({_id: decodedToken.id})
                 foundUser.notes.pull(id)
                 await foundUser.save()
-                res.json({notes: foundUser.notes})
+                const populatedUser = await User.findOne({ _id: decodedToken.id }).populate('notes');
+                
+                res.json({notes: populatedUser.notes})
                 next();
             }
         })
