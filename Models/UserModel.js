@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const noteSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-});
-
 const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
@@ -18,7 +13,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"]
     },
-    notes: [noteSchema]
+    notes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Note",
+  }],
 })
 
 userSchema.pre("save", async function (next) {
