@@ -23,26 +23,33 @@ module.exports.checkUser = (req, res, next) => {
     }
 }
 
-module.exports.setNotes = (req, res, next) => {
-    const token = req.cookies.jwt;
-    const title = req.body.title;
-    const content = req.body.content;
+module.exports.setNotes = async (req, res, next) => {
+  const token = req.cookies.jwt;
+  const title = req.body.title;
+  const content = req.body.content;
 
-    if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
-            if (err) {
-                res.json({err})
-                next();
-            } else {
-                let foundUser = await User.findOne({_id: decodedToken.id})
-                foundUser.notes.push({title, content})
-                await foundUser.save();
-                res.json({notes: foundUser.notes})
-                next();
-            }
-        })
+  if (token) {
+    try {
+      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      const foundUser = await User.findOne({ _id: decodedToken.id });
+
+      // Create a new note document
+      const newNote = new Note({
+        title,
+        content,
+      });
+      await newNote.save();
+
+      // Update the user's notes array with the note's ObjectId
+      foundUser.notes.push(newNote._id);
+      await foundUser.save();
+
+      res.json({ notes: foundUser.notes });
+    } catch (err) {
+      res.json({ err });
     }
-}
+  }
+};
 
 module.exports.deleteNotes = (req, res, next) => {
     const token = req.cookies.jwt;
