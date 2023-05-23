@@ -20,9 +20,22 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-  const salt = await bcrypt.genSalt();
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
+  if (!this.isModified("password")) {
+    // Skip rehashing password if it's not modified
+    return next();
+  }
+  
+  try {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (err) {
+    return next(err);
+  }
+  
+//   const salt = await bcrypt.genSalt();
+//   this.password = await bcrypt.hash(this.password, salt);
+//   next();
 });
 
 userSchema.statics.login = async function (email, password) {
