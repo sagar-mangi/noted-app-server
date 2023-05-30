@@ -80,8 +80,8 @@ module.exports.editNotes = async (req, res, next) => {
 //   const prevNote = req.body.prevNote;
 //   const newTitle = req.body.title;
 //   const newContent = req.body.content;
-    console.log(prevNote)
-    console.log(newTitle)
+    console.log("prevNote")
+    console.log("newTitle")
 
 //   if (token) {
 //     try {
