@@ -76,12 +76,12 @@ module.exports.deleteNotes = (req, res, next) => {
 };
 
 module.exports.editNotes = async (req, res, next) => {
-  const token = req.cookies.jwt;
-  const prevNote = req.body.prevNote;
-  const newTitle = req.body.title;
-  const newContent = req.body.content;
-    console.log(prevNote)
-    console.log(newTitle)
+//   const token = req.cookies.jwt;
+//   const prevNote = req.body.prevNote;
+//   const newTitle = req.body.title;
+//   const newContent = req.body.content;
+//     console.log(prevNote)
+//     console.log(newTitle)
 
 //   if (token) {
 //     try {
