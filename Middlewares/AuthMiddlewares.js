@@ -87,7 +87,7 @@ module.exports.editNotes = async (req, res, next) => {
       const foundUser = await User.findOne({ _id: decodedToken.id });
         
       // Find the note document by its ID
-      const foundNote = await Note.findOne({ _id: prevNote._id });
+      const foundNote = await Note.findOne({ _id: prevNote.id });
 
       if (!foundNote) {
         return res.status(404).json({ error: 'Note not found' });
