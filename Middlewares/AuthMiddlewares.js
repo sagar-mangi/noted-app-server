@@ -73,4 +73,34 @@ module.exports.deleteNotes = (req, res, next) => {
             }
         })
     }
+};
+
+module.exports.editNotes = (req, res, next) => {
+  const token = req.cookies.jwt;
+  const title = req.body.title;
+  const content = req.body.content;
+    console.log(req.body)
+  if (token) {
+    try {
+      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      const foundUser = await User.findOne({ _id: decodedToken.id });
+
+      // Create a new note document
+      const newNote = new Note({
+        title,
+        content,
+      });
+      await newNote.save();
+
+      // Update the user's notes array with the note's ObjectId
+      foundUser.notes.push(newNote._id);
+      await foundUser.save();
+        
+      // Populate the notes array with the actual note documents
+      const populatedUser = await User.findOne({ _id: decodedToken.id }).populate('notes');
+      res.json({ notes: populatedUser.notes });
+    } catch (err) {
+      res.json({ err });
+    }
+  }
 }
