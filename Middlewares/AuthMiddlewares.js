@@ -75,7 +75,7 @@ module.exports.deleteNotes = (req, res, next) => {
     }
 };
 
-module.exports.editNotes = (req, res, next) => {
+module.exports.editNotes = async (req, res, next) => {
   const token = req.cookies.jwt;
   const title = req.body.title;
   const content = req.body.content;
