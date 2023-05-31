@@ -1,5 +1,5 @@
 const { register, login } = require('../Controllers/AuthControllers');
-const { checkUser, setNotes, deleteNotes, editNotes } = require('../Middlewares/AuthMiddlewares');
+const { checkUser, setNotes, deleteNotes } = require('../Middlewares/AuthMiddlewares');
 
 const router = require('express').Router();
 
