@@ -8,6 +8,5 @@ router.post("/register", register)
 router.post("/login", login)
 router.post("/post", setNotes)
 router.delete("/:id", deleteNotes)
-router.post("/edit", editNotes)
 
 module.exports = router;
