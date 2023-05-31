@@ -101,13 +101,13 @@ module.exports.editNotes = async (req, res, next) => {
       }
 
       // Update the note document with the new title and content
-      foundNote.title = newTitle || prevNote.title;
-      foundNote.content = newContent || prevNote.content;
-      await foundNote.save();
+//       foundNote.title = newTitle || prevNote.title;
+//       foundNote.content = newContent || prevNote.content;
+//       await foundNote.save();
         
       // Populate the notes array with the actual note documents
-      const populatedUser = await User.findOne({ _id: decodedToken.id }).populate('notes');
-      res.json({ notes: populatedUser.notes });
+//       const populatedUser = await User.findOne({ _id: decodedToken.id }).populate('notes');
+//       res.json({ notes: populatedUser.notes });
     } catch (err) {
       res.json({ err });
     }
