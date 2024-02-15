@@ -48,7 +48,7 @@ module.exports.register = async (req,res,next) => {
             sameSite: "none",
             secure: true
         })
-        res.status(201).json({user:user._id, created: true, jwt: token})
+        res.status(201).json({user:user._id, firstName: user.firstName, created: true, jwt: token})
     } catch (err) {
         console.log(err);
         const errors = handleErrors(err);
@@ -71,7 +71,7 @@ module.exports.login = async (req,res,next) => {
             sameSite: "none", 
             secure: true 
         });
-        res.status(200).json({ user: user._id, status: true, jwt: token });
+        res.status(200).json({ user: user._id, firstName: user.firstName, status: true, jwt: token });
     } catch (err) {
         console.log(err);
         const errors = handleErrors(err);
