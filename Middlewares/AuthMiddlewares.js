@@ -75,3 +75,20 @@ module.exports.deleteNotes = (req, res, next) => {
     }
 };
 
+module.exports.editNote = (req, res, next) => {
+    const token = req.cookies.jwt;
+    const {title, content, id} = req.body;
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+            if (err) {
+                res.json({err})
+                next();
+            } else {
+                const updatedNote = await Note.findByIdAndUpdate(id, { title, content }, { new: true });
+                
+                res.json({notes: populatedUser.notes})
+                next();
+            }
+        })
+    }
+}
