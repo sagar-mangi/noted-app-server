@@ -86,7 +86,7 @@ module.exports.editNote = (req, res, next) => {
             } else {
                 const updatedNote = await Note.findByIdAndUpdate(id, { title, content }, { new: true });
                 
-                res.json({status: updated})
+                res.json({status: "updated"})
                 next();
             }
         })
